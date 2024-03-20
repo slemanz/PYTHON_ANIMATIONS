@@ -22,10 +22,9 @@ y=np.ones(len(t))*altitude #other way
 
 
 
-
 ############################### ANIMATION ###############################
 
-frame_amount = len(t)
+frame_amount = int(len(t))
 
 def update_plot(num):
 
@@ -42,6 +41,7 @@ gs = gridspec.GridSpec(2,2)
 ax0 = fig.add_subplot(gs[0,:], facecolor=(0.9,0.9,0.9))
 
 plane_trajectory,=ax0.plot([],[],'g',linewidth=2)
+plane_1,= ax0.plot([],[],'k', linewidth=10)
 
 
 plt.xlim(x[0], x[-1])
