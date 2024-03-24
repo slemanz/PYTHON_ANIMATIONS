@@ -29,7 +29,9 @@ frame_amount = int(len(t))
 def update_plot(num):
 
     plane_trajectory.set_data(x[0:num], y[0:num]) 
-    #plane_1.set_data([x[num] - 100,x[num]+100],[2,2])
+    plane_1.set_data([x[num] - 40,x[num]+20],[2,2])
+    plane_2.set_data([x[num],x[num] -20],[y[num],y[num] + 0.3])
+    plane_3.set_data([x[num],x[num] -20],[y[num],y[num] - 0.3])
 
     return plane_trajectory, plane_1
 
@@ -42,7 +44,9 @@ gs = gridspec.GridSpec(2,2)
 ax0 = fig.add_subplot(gs[0,:], facecolor=(0.9,0.9,0.9))
 
 plane_trajectory,=ax0.plot([],[],'g',linewidth=2) # ,= is for remove brackets from our information
-plane_1,= ax0.plot([],[],'k', linewidth=10) 
+plane_1,= ax0.plot([],[],'k', linewidth=10)  # center of airplane
+plane_2,= ax0.plot([],[],'k', linewidth=5)  # first wing
+plane_3,= ax0.plot([],[],'k', linewidth=5)  # second wing
 
 
 
