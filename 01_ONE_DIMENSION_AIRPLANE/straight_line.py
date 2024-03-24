@@ -66,6 +66,9 @@ house_5,=ax0.plot([1300,1300],[0,1.0], 'k', linewidth=20)
 plt.xlim(x[0], x[-1])
 plt.ylim(0, y[-1]+1)
 
+plt.xticks(np.arange(x[0], x[-1] + 1, x[-1]/4), size=15) # cut in 4 pieces the x
+plt.yticks(np.arange(0,y[-1]+2, y[-1]/y[-1]), size=15) # (0, 2+2, 2/2)
+
 
 
 plane_ani = animation.FuncAnimation(fig, update_plot, frames=frame_amount, interval=20, repeat=True, blit=True)
