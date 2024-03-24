@@ -32,8 +32,10 @@ def update_plot(num):
     plane_1.set_data([x[num] - 40,x[num]+20],[2,2])
     plane_2.set_data([x[num],x[num] -20],[y[num],y[num] + 0.3])
     plane_3.set_data([x[num],x[num] -20],[y[num],y[num] - 0.3])
+    plane_4.set_data([x[num]-30,x[num]-40],[y[num],y[num] - 0.15])
+    plane_5.set_data([x[num]-30,x[num]-40],[y[num],y[num] + 0.15])
 
-    return plane_trajectory, plane_1
+    return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5
 
 
 fig = plt.figure(figsize=[16,9], dpi=120, facecolor=(0.8,0.8,0.8))
@@ -47,6 +49,8 @@ plane_trajectory,=ax0.plot([],[],'g',linewidth=2) # ,= is for remove brackets fr
 plane_1,= ax0.plot([],[],'k', linewidth=10)  # center of airplane
 plane_2,= ax0.plot([],[],'k', linewidth=5)  # first wing
 plane_3,= ax0.plot([],[],'k', linewidth=5)  # second wing
+plane_4,= ax0.plot([],[],'k', linewidth=3)  # first tail
+plane_5,= ax0.plot([],[],'k', linewidth=3)  # second tail
 
 
 
@@ -61,6 +65,7 @@ house_5,=ax0.plot([1300,1300],[0,1.0], 'k', linewidth=20)
 
 plt.xlim(x[0], x[-1])
 plt.ylim(0, y[-1]+1)
+
 
 
 plane_ani = animation.FuncAnimation(fig, update_plot, frames=frame_amount, interval=20, repeat=True, blit=True)
