@@ -95,7 +95,24 @@ plt.title('Airplane', fontsize=20)
 plt.grid(True)
 
 
+# subplot 2
+
+ax2=fig.add_subplot(gs[1,0], facecolor=(0.9,0.9,0.9))
+plt.xlim(t[0], t[-1])
+plt.ylim(x[0], x[-1])
+plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=15) 
+plt.yticks(np.arange(x[0], x[-1] + 1, x[-1]/4), size=15) 
+plt.xlabel('time [hrs]', fontsize=15)
+plt.ylabel('x-distance [km]', fontsize=15)
+plt.grid(True)
+plt.legend(loc='upper right', fontsize='x-large')
 
 
-plane_ani = animation.FuncAnimation(fig, update_plot, frames=frame_amount, interval=20, repeat=True, blit=True)
+
+
+
+
+
+plane_ani = animation.FuncAnimation(fig, update_plot, 
+        frames=frame_amount, interval=20, repeat=True, blit=True)
 plt.show()
