@@ -49,8 +49,12 @@ def update_plot(num):
     stopwatch0.set_text(str(round(t[num], 1)) + ' hrs')
     dist_counter0.set_text(str(int(x[num])) + ' km')
 
+
+    # 2nd plot
+    x_dist.set_data(t[0:num], x[0:num])
+
     return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5,\
-    stopwatch0
+    stopwatch0, dist_counter0, x_dist
 
 
 fig = plt.figure(figsize=[16,9], dpi=120, facecolor=(0.8,0.8,0.8))
@@ -98,6 +102,8 @@ plt.grid(True)
 # subplot 2
 
 ax2=fig.add_subplot(gs[1,0], facecolor=(0.9,0.9,0.9))
+x_dist,=ax2.plot([],[], '-b', linewidth=3, label='x=800*t')
+
 plt.xlim(t[0], t[-1])
 plt.ylim(x[0], x[-1])
 plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=15) 
