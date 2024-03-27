@@ -52,9 +52,11 @@ def update_plot(num):
 
     # 2nd plot
     x_dist.set_data(t[0:num], x[0:num])
+    horizontal_line.set_data([t[0],t[num]],[x[num],x[num]])
+    vertical_line.set_data([t[num],t[num]],[x[0],x[num]])
 
     return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5,\
-    stopwatch0, dist_counter0, x_dist
+    stopwatch0, dist_counter0, x_dist, horizontal_line
 
 
 fig = plt.figure(figsize=[16,9], dpi=120, facecolor=(0.8,0.8,0.8))
@@ -103,6 +105,8 @@ plt.grid(True)
 
 ax2=fig.add_subplot(gs[1,0], facecolor=(0.9,0.9,0.9))
 x_dist,=ax2.plot([],[], '-b', linewidth=3, label='x=800*t')
+horizontal_line,=ax2.plot([],[],'r:o', linewidth=2, label='horizontal line')
+vertical_line,=ax2.plot([],[],'g:o', linewidth=2, label='vertical line')
 
 plt.xlim(t[0], t[-1])
 plt.ylim(x[0], x[-1])
@@ -111,7 +115,7 @@ plt.yticks(np.arange(x[0], x[-1] + 1, x[-1]/4), size=15)
 plt.xlabel('time [hrs]', fontsize=15)
 plt.ylabel('x-distance [km]', fontsize=15)
 plt.grid(True)
-plt.legend(loc='upper right', fontsize='x-large')
+plt.legend(loc='upper left', fontsize='x-large')
 
 
 
