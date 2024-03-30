@@ -19,6 +19,8 @@ altitude = 2
 # y=np.ones(int(t_end/dt + 1))*altitude
 y=np.ones(len(t))*altitude #other way
 
+# speed x 
+speed_x = np.ones(len(t))*800
 
 
 
@@ -58,8 +60,16 @@ def update_plot(num):
     horizontal_line.set_data([t[0],t[num]],[x[num],x[num]])
     vertical_line.set_data([t[num],t[num]],[x[0],x[num]])
 
+    # 3rd plot
+    speed_line.set_data(t[0:num], speed_x[0:num])
+
+    speed_text1.set_text(str(int(x[num])))
+    speed_text2.set_text(str(round(t[num], 1)))
+    speed_text3.set_text("= " + str(int(speed_x[num])) + " km/h")
+
     return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5,\
-    stopwatch0, dist_counter0, x_dist, horizontal_line
+    stopwatch0, dist_counter0, x_dist, horizontal_line, speed_x,\
+    speed_text1, speed_text2, speed_text3
 
 
 fig = plt.figure(figsize=[16,9], dpi=120, facecolor=(0.8,0.8,0.8))
@@ -124,16 +134,23 @@ plt.legend(loc='upper left', fontsize=10)
 # subplot 3
 
 ax3=fig.add_subplot(gs[1,1], facecolor=(0.9,0.9,0.9))
-speed_line,=ax2.plot([],[], '-b', linewidth=3, label="FUNCTION: ")
-vertical_line2,=ax2.plot([],[],'b:o', linewidth=2, label='speed')
+speed_line,=ax3.plot([],[], '-b', linewidth=3, label="FUNCTION: ")
+vertical_line2,=ax3.plot([],[],'b:o', linewidth=2, label='speed')
+
+
+speed_text1 = ax3.text(0.2, 1100, '', size=14, color='r')
+speed_text2 = ax3.text(0.2, 900, '', size=14, color='g')
+speed_text3 = ax3.text(0.4, 1000, '', size=14, color='b')
 
 plt.xlim(t[0], t[-1])
-plt.ylim(x[0], x[-1])
+plt.ylim(0, speed_x[-1]*2)
 plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=10) 
-plt.yticks(np.arange(x[0], x[-1] + 1, x[-1]/4), size=10) 
+plt.yticks(np.arange(0,  speed_x[-1]*2+1, (speed_x[-1]*2)/4), size=10) 
 
 plt.xlabel('time [hrs]', fontsize=10)
 plt.ylabel('speed [km/h]', fontsize=10)
+plt.grid(True)
+plt.legend(loc='upper right', fontsize=10)
 
 
 
