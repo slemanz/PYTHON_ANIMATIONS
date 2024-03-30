@@ -45,6 +45,7 @@ def update_plot(num):
     plane_3.set_data([x[num],x[num] -20],[y[num],y[num] - 0.3])
     plane_4.set_data([x[num]-30,x[num]-40],[y[num],y[num] - 0.15])
     plane_5.set_data([x[num]-30,x[num]-40],[y[num],y[num] + 0.15])
+    plane_vertical.set_data([x[num],x[num]], [0, y[num]])
 
     stopwatch0.set_text(str(round(t[num], 1)) + ' hrs')
     dist_counter0.set_text(str(int(x[num])) + ' km')
@@ -67,6 +68,7 @@ gs = gridspec.GridSpec(2,2)
 ax0 = fig.add_subplot(gs[0,:], facecolor=(0.9,0.9,0.9))
 
 plane_trajectory,=ax0.plot([],[],'r:o',linewidth=2) # ,= is for remove brackets from our information
+plane_vertical,=ax0.plot([],[],'k:o', linewidth=2)
 
 plane_1,= ax0.plot([],[],'k', linewidth=10)  # center of airplane
 plane_2,= ax0.plot([],[],'k', linewidth=5)  # first wing
