@@ -63,16 +63,17 @@ def update_plot(num):
     # 3rd plot
     speed_line.set_data(t[0:num], speed_x[0:num])
 
-    speed_text1.set_text(str(int(x[num])))
-    speed_text2.set_text(str(round(t[num], 1)))
-    speed_text3.set_text("= " + str(int(speed_x[num])) + " km/h")
+    if num != 0:
+        speed_text1.set_text(str(int(x[num])))
+        speed_text2.set_text("{:.3f}".format(t[num]))
+        speed_text3.set_text("= " + str(int(round(x[num]/t[num], 1))) + " km/h")
 
     return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5,\
     stopwatch0, dist_counter0, x_dist, horizontal_line, speed_x,\
     speed_text1, speed_text2, speed_text3
 
 
-fig = plt.figure(figsize=[16,9], dpi=120, facecolor=(0.8,0.8,0.8))
+fig = plt.figure(figsize=[16,9], dpi=100, facecolor=(0.8,0.8,0.8))
 gs = gridspec.GridSpec(2,2)
 
 
@@ -124,12 +125,12 @@ vertical_line,=ax2.plot([],[],'g:o', linewidth=2, label='time spent')
 
 plt.xlim(t[0], t[-1])
 plt.ylim(x[0], x[-1])
-plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=10) 
-plt.yticks(np.arange(x[0], x[-1] + 1, x[-1]/4), size=10) 
-plt.xlabel('time [hrs]', fontsize=10)
-plt.ylabel('x-distance [km]', fontsize=10)
+plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=12) 
+plt.yticks(np.arange(x[0], x[-1] + 1, x[-1]/4), size=12) 
+plt.xlabel('time [hrs]', fontsize=12)
+plt.ylabel('x-distance [km]', fontsize=12)
 plt.grid(True)
-plt.legend(loc='upper left', fontsize=10)
+plt.legend(loc='upper left', fontsize=12)
 
 # subplot 3
 
@@ -138,19 +139,20 @@ speed_line,=ax3.plot([],[], '-b', linewidth=3, label="FUNCTION: ")
 vertical_line2,=ax3.plot([],[],'b:o', linewidth=2, label='speed')
 
 
-speed_text1 = ax3.text(0.2, 1100, '', size=14, color='r')
-speed_text2 = ax3.text(0.2, 900, '', size=14, color='g')
-speed_text3 = ax3.text(0.4, 1000, '', size=14, color='b')
+speed_text1 = ax3.text(0.15, 1020, '', size=14, color='r')
+speed_text2 = ax3.text(0.12, 890, '', size=14, color='g')
+speed_text3 = ax3.text(0.38, 965, '', size=14, color='b')
+division_line,=ax3.plot([0.1,0.35],[995,995], 'k', linewidth=2)
 
 plt.xlim(t[0], t[-1])
 plt.ylim(0, speed_x[-1]*2)
-plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=10) 
-plt.yticks(np.arange(0,  speed_x[-1]*2+1, (speed_x[-1]*2)/4), size=10) 
+plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=12) 
+plt.yticks(np.arange(0,  speed_x[-1]*2+1, (speed_x[-1]*2)/4), size=12) 
 
-plt.xlabel('time [hrs]', fontsize=10)
-plt.ylabel('speed [km/h]', fontsize=10)
+plt.xlabel('time [hrs]', fontsize=12)
+plt.ylabel('speed [km/h]', fontsize=12)
 plt.grid(True)
-plt.legend(loc='upper right', fontsize=10)
+plt.legend(loc='upper right', fontsize=12)
 
 
 
