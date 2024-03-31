@@ -12,7 +12,9 @@ dt = 0.005
 t = np.arange(t0, t_end+dt, dt)
 
 # Create an array for x (km)
-x = 400*t**2
+a = 400
+n = 2
+x = a*t**n
 
 # Create a y array
 altitude = 2
@@ -20,7 +22,7 @@ altitude = 2
 y=np.ones(len(t))*altitude #other way
 
 # speed x 
-speed_x = np.ones(len(t))*800
+speed_x = n*a*t**(n-1) # using derivate formula
 
 
 
@@ -63,14 +65,11 @@ def update_plot(num):
     # 3rd plot
     speed_line.set_data(t[0:num], speed_x[0:num])
 
-    if num != 0:
-        speed_text1.set_text(str(int(x[num])))
-        speed_text2.set_text("{:.3f}".format(t[num]))
-        speed_text3.set_text("= " + str(int(round(x[num]/t[num], 1))) + " km/h")
+    speed_text3.set_text("dX/dt = " + str(int(speed_x[num])) + " km/h")
 
     return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5,\
     stopwatch0, dist_counter0, x_dist, horizontal_line, speed_x,\
-    speed_text1, speed_text2, speed_text3
+    speed_text3
 
 
 fig = plt.figure(figsize=[16,9], dpi=100, facecolor=(0.8,0.8,0.8))
@@ -139,15 +138,12 @@ speed_line,=ax3.plot([],[], '-b', linewidth=3, label="FUNCTION: ")
 vertical_line2,=ax3.plot([],[],'b:o', linewidth=2, label='speed')
 
 
-speed_text1 = ax3.text(0.15, 1020, '', size=14, color='r')
-speed_text2 = ax3.text(0.12, 890, '', size=14, color='g')
-speed_text3 = ax3.text(0.38, 965, '', size=14, color='b')
-division_line,=ax3.plot([0.1,0.35],[995,995], 'k', linewidth=2)
+speed_text3 = ax3.text(0.20, 965, '', size=14, color='b')
 
 plt.xlim(t[0], t[-1])
-plt.ylim(0, speed_x[-1]*2)
+plt.ylim(0, speed_x[-1])
 plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=12) 
-plt.yticks(np.arange(0,  speed_x[-1]*2+1, (speed_x[-1]*2)/4), size=12) 
+plt.yticks(np.arange(0,  speed_x[-1]+1, (speed_x[-1])/4), size=12) 
 
 plt.xlabel('time [hrs]', fontsize=12)
 plt.ylabel('speed [km/h]', fontsize=12)
