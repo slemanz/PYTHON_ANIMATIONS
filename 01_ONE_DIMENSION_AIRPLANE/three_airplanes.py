@@ -28,16 +28,16 @@ y1=np.ones(len(t))*altitude1 #other way
 speed_x1 = n1*a1*t**(n1-1) # using derivate formula
 
 # AIRPLANE 2
-a2 = 800
-n2 = 1
+a2 = 400
+n2 = 2
 x2 = a2*t**n2
 altitude2 = 1.5
 y2=np.ones(len(t))*altitude2 
 speed_x2 = n2*a2*t**(n2-1) 
 
 # AIRPLANE 3
-a3 = 800
-n3 = 1
+a3 = 200
+n3 = 3
 x3 = a3*t**n3
 altitude3 = 0.5
 y3=np.ones(len(t))*altitude3 
@@ -78,7 +78,6 @@ for i in range(0, frame_amount):
         dot3[i] = x3[n-20]
 
 def update_plot(num):
-
     plane_trajectory1.set_data(dot1[0:num], y1[0:num]) 
     plane1_1.set_data([x1[num] - 40,x1[num]+20],[y1[num],y1[num]])
     plane1_2.set_data([x1[num],x1[num] -20],[y1[num],y1[num] + 0.3])
@@ -93,18 +92,29 @@ def update_plot(num):
     plane2_4.set_data([x2[num]-30,x2[num]-40],[y2[num],y2[num] - 0.15])
     plane2_5.set_data([x2[num]-30,x2[num]-40],[y2[num],y2[num] + 0.15])
 
+    plane_trajectory3.set_data(dot3[0:num], y3[0:num]) 
+    plane3_1.set_data([x3[num] - 40,x3[num]+20],[y3[num],y3[num]])
+    plane3_2.set_data([x3[num],x3[num] -20],[y3[num],y3[num] + 0.3])
+    plane3_3.set_data([x3[num],x3[num] -20],[y3[num],y3[num] - 0.3])
+    plane3_4.set_data([x3[num]-30,x3[num]-40],[y3[num],y3[num] - 0.15])
+    plane3_5.set_data([x3[num]-30,x3[num]-40],[y3[num],y3[num] + 0.15])
 
 
     # 2nd plot
     x_dist1.set_data(t[0:num], x1[0:num])
+    x_dist2.set_data(t[0:num], x2[0:num])
+    x_dist3.set_data(t[0:num], x3[0:num])
 
     # 3rd plot
     speed_line1.set_data(t[0:num], speed_x1[0:num])
+    speed_line2.set_data(t[0:num], speed_x2[0:num])
+    speed_line3.set_data(t[0:num], speed_x3[0:num])
 
 
     return plane_trajectory1, plane1_1,plane1_2, plane1_3, plane1_4, plane1_5,\
     plane_trajectory2, plane2_1,plane2_2, plane2_3, plane2_4, plane2_5,\
-    x_dist1, speed_line1
+    plane_trajectory3, plane3_1,plane3_2, plane3_3, plane3_4, plane3_5,\
+    x_dist1, speed_line1, x_dist2, speed_line2, x_dist3, speed_line3
 
 
 fig = plt.figure(figsize=[16,9], dpi=100, facecolor=(0.8,0.8,0.8))
@@ -127,7 +137,7 @@ plane1_5,= ax0.plot([],[],'k', linewidth=3)  # second tail
 
 
 # Airplane 2
-plane_trajectory2,=ax0.plot([],[],'r:o',linewidth=2) 
+plane_trajectory2,=ax0.plot([],[],'g:o',linewidth=2) 
 
 plane2_1,= ax0.plot([],[],'k', linewidth=10)  # center of airplane
 plane2_2,= ax0.plot([],[],'k', linewidth=5)  # first wing
@@ -138,7 +148,7 @@ plane2_5,= ax0.plot([],[],'k', linewidth=3)  # second tail
 
 
 # Airplane 3
-plane_trajectory3,=ax0.plot([],[],'r:o',linewidth=2) 
+plane_trajectory3,=ax0.plot([],[],'b:o',linewidth=2) 
 
 plane3_1,= ax0.plot([],[],'k', linewidth=10)  # center of airplane
 plane3_2,= ax0.plot([],[],'k', linewidth=5)  # first wing
@@ -161,7 +171,9 @@ plt.grid(True)
 # subplot 2
 
 ax2=fig.add_subplot(gs[1,0], facecolor=(0.9,0.9,0.9))
-x_dist1,=ax2.plot([],[], '-b', linewidth=3, label='position airplane 1')
+x_dist1,=ax2.plot([],[], '-r', linewidth=3, label='position airplane 1')
+x_dist2,=ax2.plot([],[], '-g', linewidth=3, label='position airplane 2')
+x_dist3,=ax2.plot([],[], '-b', linewidth=3, label='position airplane 3')
 
 plt.xlim(t[0], t[-1])
 plt.ylim(x1[0], x1[-1])
@@ -175,17 +187,19 @@ plt.legend(loc='upper left', fontsize=12)
 # subplot 3
 
 ax3=fig.add_subplot(gs[1,1], facecolor=(0.9,0.9,0.9))
-speed_line1,=ax3.plot([],[], '-b', linewidth=3, label='speed airplane 1')
+speed_line1,=ax3.plot([],[], '-r', linewidth=3, label='speed airplane 1')
+speed_line2,=ax3.plot([],[], '-g', linewidth=3, label='speed airplane 2')
+speed_line3,=ax3.plot([],[], '-b', linewidth=3, label='speed airplane 3')
 
 plt.xlim(t[0], t[-1])
-plt.ylim(0, speed_x1[-1]*2)
+plt.ylim(0, speed_x1[-1]*3)
 plt.xticks(np.arange(t[0], t[-1] + dt, t[-1]/4), size=12) 
-plt.yticks(np.arange(0,  speed_x1[-1]*2+1, (speed_x1[-1]*2)/4), size=12) 
+plt.yticks(np.arange(0,  speed_x1[-1]*3+1, (speed_x1[-1]*3)/4), size=12) 
 
 plt.xlabel('time [hrs]', fontsize=12)
 plt.ylabel('speed [km/h]', fontsize=12)
 plt.grid(True)
-plt.legend(loc='upper right', fontsize=12)
+plt.legend(loc='upper left', fontsize=12)
 
 
 
