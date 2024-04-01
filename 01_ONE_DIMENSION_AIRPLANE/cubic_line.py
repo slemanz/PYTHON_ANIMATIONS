@@ -13,8 +13,8 @@ t = np.arange(t0, t_end+dt, dt)
 
 # Create an array for x (km)
 a = 200
-n = 3
-x = a*t**n
+n2 = 3
+x = a*t**n2
 
 # Create a y array
 altitude = 2
@@ -22,7 +22,7 @@ altitude = 2
 y=np.ones(len(t))*altitude #other way
 
 # speed x 
-speed_x = n*a*t**(n-1) # using derivate formula
+speed_x = n2*a*t**(n2-1) # using derivate formula
 
 
 
@@ -118,7 +118,7 @@ plt.grid(True)
 # subplot 2
 
 ax2=fig.add_subplot(gs[1,0], facecolor=(0.9,0.9,0.9))
-x_dist,=ax2.plot([],[], '-b', linewidth=3, label='x=800*t')
+x_dist,=ax2.plot([],[], '-b', linewidth=3, label='X= '+str(a)+'*t^'+str(n2))
 horizontal_line,=ax2.plot([],[],'r:o', linewidth=2, label='distance covered')
 vertical_line,=ax2.plot([],[],'g:o', linewidth=2, label='time spent')
 
@@ -134,7 +134,7 @@ plt.legend(loc='upper left', fontsize=12)
 # subplot 3
 
 ax3=fig.add_subplot(gs[1,1], facecolor=(0.9,0.9,0.9))
-speed_line,=ax3.plot([],[], '-b', linewidth=3, label="FUNCTION: ")
+speed_line,=ax3.plot([],[], '-b', linewidth=3, label='dX/dt: '+ str(n2*a) +'*t^('+str(n2-1)+')')
 vertical_line2,=ax3.plot([],[],'b:o', linewidth=2, label='speed')
 
 
