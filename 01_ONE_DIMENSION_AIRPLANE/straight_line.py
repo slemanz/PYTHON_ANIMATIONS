@@ -70,7 +70,7 @@ def update_plot(num):
 
     return plane_trajectory, plane_1,plane_2, plane_3, plane_4, plane_5,\
     stopwatch0, dist_counter0, x_dist, horizontal_line, speed_x,\
-    speed_text1, speed_text2, speed_text3
+    speed_text1, speed_text2, speed_text3, plane_vertical
 
 
 fig = plt.figure(figsize=[16,9], dpi=100, facecolor=(0.8,0.8,0.8))
