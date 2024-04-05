@@ -26,3 +26,18 @@ y_earth_velocity= n*0.5*g_earth*t**(n-1)
 
 # acceleration y arrays
 y_earth_acceleration = (n-1)*g_earth*t**(n-2)
+
+
+# create circles
+def create_circle(r):
+    degrees=np.arange(0,361,1)
+    radians=degrees*np.pi/180
+    sphere_x = r*np.cos(radians)
+    sphere_y = r*np.sin(radians)
+    return sphere_x, sphere_y
+
+radius = 5 # [meters]
+sphere_x_earth, sphere_y_earth = create_circle(radius)
+
+np.set_printoptions(suppress=True)
+print(sphere_x_earth)
