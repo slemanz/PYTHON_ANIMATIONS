@@ -62,6 +62,7 @@ def update_plot(num):
 
     # 3rd plot
     speed_line.set_data(t[0:num], speed_x[0:num])
+    vertical_line2.set_data([t[num],t[num]],[0,speed_x[num]])
 
     if num != 0:
         speed_text1.set_text(str(int(x[num])))
@@ -136,7 +137,7 @@ plt.legend(loc='upper left', fontsize=12)
 
 ax3=fig.add_subplot(gs[1,1], facecolor=(0.9,0.9,0.9))
 speed_line,=ax3.plot([],[], '-b', linewidth=3, label="FUNCTION: ")
-vertical_line2,=ax3.plot([],[],'b:o', linewidth=2, label='speed')
+vertical_line2,=ax3.plot([],[],'g:o', linewidth=2, label='speed')
 
 
 speed_text1 = ax3.text(0.15, 1020, '', size=14, color='r')
