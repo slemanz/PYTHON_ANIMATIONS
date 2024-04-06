@@ -17,7 +17,7 @@ g_earth = 9.8 # [m/s^2]
 # position y arrays
 n = 2
 y_i = 100 # [m]
-y_earth=y_i + 0.5*g_earth*t**n
+y_earth = y_i + 0.5*g_earth*t**n
 
 
 # velocity y arrays
@@ -45,9 +45,31 @@ sphere_x_earth, sphere_y_earth = create_circle(radius)
 
 frame_amount = len(t)
 width_ratio = 1.2
-y_f = - 10  # [m]
+y_f = -10  # [m]
 dy = 10 # [m]
 
 def update__plot(num):
 
     return
+
+
+# figure properties
+fig = plt.figure(figsize=(16,9), dpi=120, facecolor=(0.8,0.8,0.8))
+gs = gridspec.GridSpec(3,4)
+
+
+# create object for earth
+ax0 = fig.add_subplot(gs[:,0], facecolor=(0.9,0.9,0.9))
+sphere_earth,=ax0.plot([],[],'k',linewidth=3)
+land_Earth=ax0.plot([-radius*width_ratio, radius*width_ratio], [-5,-5],'g', linewidth=38)
+plt.xlim(-radius*width_ratio, radius*width_ratio)
+plt.ylim(y_f, y_i+dy)
+plt.xticks(np.arange(-radius, radius+1, radius))
+plt.yticks(np.arange(y_f, y_i+2*dy, dy))
+plt.ylabel('altitude [m]')
+plt.title('Earth')
+
+
+
+
+plt.show()
