@@ -39,5 +39,15 @@ def create_circle(r):
 radius = 5 # [meters]
 sphere_x_earth, sphere_y_earth = create_circle(radius)
 
-np.set_printoptions(suppress=True)
-print(sphere_x_earth)
+'''
+        ANIMATION
+'''
+
+frame_amount = len(t)
+width_ratio = 1.2
+y_f = - 10  # [m]
+dy = 10 # [m]
+
+def update__plot(num):
+
+    return
