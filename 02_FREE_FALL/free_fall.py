@@ -52,8 +52,9 @@ dy = 10 # [m]
 def update_plot(num):
     if(y_earth[num] >= radius):
         sphere_earth.set_data(sphere_x_earth, sphere_y_earth+y_earth[num])
+        alt_E.set_data(t[0:num], y_earth[0:num])
 
-    return sphere_earth,
+    return sphere_earth, alt_E
 
 
 # figure properties
@@ -72,6 +73,13 @@ plt.yticks(np.arange(y_f, y_i+2*dy, dy))
 plt.ylabel('altitude [m]')
 plt.title('Earth')
 
+
+# create position function
+ax3=fig.add_subplot(gs[0,3], facecolor=(0.9,0.9,0.9))
+alt_E,=ax3.plot([],[],'g', label='Alt_Earth = '+str(y_i)+'('+str(round(g_earth/2,1))+')t^'+str(n)+' [m]', linewidth=3)
+plt.xlim(0, t_end)
+plt.ylim(0, y_i)
+plt.legend(loc=(0.6,0.7), fontsize='x-small')
 
 free_fall=animation.FuncAnimation(fig, update_plot, frame_amount, interval=20, 
                                     repeat=True, blit=True)
