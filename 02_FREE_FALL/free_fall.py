@@ -20,13 +20,13 @@ y_i = 100 # [m]
 y_earth = y_i - 0.5*g_earth*t**n
 
 
+
 # velocity y arrays
 y_earth_velocity= n*0.5*g_earth*t**(n-1)
 
 
 # acceleration y arrays
 y_earth_acceleration = (n-1)*g_earth*t**(n-2)
-
 
 
 # create circles
@@ -50,7 +50,8 @@ y_f = -10  # [m]
 dy = 10 # [m]
 
 def update_plot(num):
-    sphere_earth.set_data(sphere_x_earth, sphere_y_earth+y_earth[num])
+    if(y_earth[num] >= radius):
+        sphere_earth.set_data(sphere_x_earth, sphere_y_earth+y_earth[num])
 
     return sphere_earth,
 
