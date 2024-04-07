@@ -17,7 +17,7 @@ g_earth = 9.8 # [m/s^2]
 # position y arrays
 n = 2
 y_i = 100 # [m]
-y_earth = y_i + 0.5*g_earth*t**n
+y_earth = y_i - 0.5*g_earth*t**n
 
 
 # velocity y arrays
@@ -26,6 +26,7 @@ y_earth_velocity= n*0.5*g_earth*t**(n-1)
 
 # acceleration y arrays
 y_earth_acceleration = (n-1)*g_earth*t**(n-2)
+
 
 
 # create circles
@@ -48,9 +49,10 @@ width_ratio = 1.2
 y_f = -10  # [m]
 dy = 10 # [m]
 
-def update__plot(num):
+def update_plot(num):
+    sphere_earth.set_data(sphere_x_earth, sphere_y_earth+y_earth[num])
 
-    return
+    return sphere_earth,
 
 
 # figure properties
@@ -70,6 +72,7 @@ plt.ylabel('altitude [m]')
 plt.title('Earth')
 
 
-
+free_fall=animation.FuncAnimation(fig, update_plot, frame_amount, interval=20, 
+                                    repeat=True, blit=True)
 
 plt.show()
