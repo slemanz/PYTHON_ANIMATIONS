@@ -22,7 +22,7 @@ y_earth = y_i - 0.5*g_earth*t**n
 
 
 # velocity y arrays
-y_earth_velocity= n*0.5*g_earth*t**(n-1)
+y_earth_velocity= -1*n*0.5*g_earth*t**(n-1)
 
 
 # acceleration y arrays
@@ -53,8 +53,9 @@ def update_plot(num):
     if(y_earth[num] >= radius):
         sphere_earth.set_data(sphere_x_earth, sphere_y_earth+y_earth[num])
         alt_E.set_data(t[0:num], y_earth[0:num])
+        vel_E.set_data(t[0:num], y_earth_velocity[0:num])
 
-    return sphere_earth, alt_E
+    return sphere_earth, alt_E, vel_E
 
 
 # figure properties
@@ -80,6 +81,14 @@ alt_E,=ax3.plot([],[],'g', label='Alt_Earth = '+str(y_i)+'('+str(round(g_earth/2
 plt.xlim(0, t_end)
 plt.ylim(0, y_i)
 plt.legend(loc=(0.6,0.7), fontsize='x-small')
+
+
+# Create velocity function
+ax4=fig.add_subplot(gs[1,3], facecolor=(0.9,0.9,0.9))
+vel_E,=ax4.plot([],[],'g', linewidth=3, label='Vel_Earth = '+str(g_earth)+'t [m/s]')
+plt.xlim(0,t_end)
+plt.ylim(y_earth_velocity[-1], 0)
+plt.legend(loc='lower left', fontsize='x-small')
 
 free_fall=animation.FuncAnimation(fig, update_plot, frame_amount, interval=20, 
                                     repeat=True, blit=True)
