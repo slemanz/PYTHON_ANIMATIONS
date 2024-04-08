@@ -18,15 +18,18 @@ g_mars = -3.71
 n = 2
 y_i = 100 # [m]
 y_earth = y_i + 0.5*g_earth*t**n
+y_mars = y_i + 0.5*g_mars*t**n
 
 
 
 # velocity y arrays
 y_earth_velocity= n*0.5*g_earth*t**(n-1)
+y_mars_velocity= n*0.5*g_mars*t**(n-1)
 
 
 # acceleration y arrays
 y_earth_acceleration = (n-1)*g_earth*t**(n-2)
+y_mars_acceleration = (n-1)*g_mars*t**(n-2)
 
 
 
@@ -40,6 +43,7 @@ def create_circle(r):
 
 radius = 5 # [meters]
 sphere_x_earth, sphere_y_earth = create_circle(radius)
+sphere_x_mars, sphere_y_mars = create_circle(radius)
 
 '''
         ANIMATION
@@ -56,6 +60,12 @@ def update_plot(num):
         alt_E.set_data(t[0:num], y_earth[0:num])
         vel_E.set_data(t[0:num], y_earth_velocity[0:num])
         acc_E.set_data(t[0:num], y_earth_acceleration[0:num])
+
+    if(y_mars[num] >= radius):
+        sphere_mars.set_data(sphere_x_mars, sphere_y_mars+y_mars[num])
+        #alt_E.set_data(t[0:num], y_earth[0:num])
+        #vel_E.set_data(t[0:num], y_earth_velocity[0:num])
+        #acc_E.set_data(t[0:num], y_earth_acceleration[0:num])
 
     return sphere_earth, alt_E, vel_E, acc_E
 
@@ -75,6 +85,17 @@ plt.xticks(np.arange(-radius, radius+1, radius))
 plt.yticks(np.arange(y_f, y_i+2*dy, dy))
 plt.ylabel('altitude [m]')
 plt.title('Earth')
+
+
+# create object for mars
+ax1 = fig.add_subplot(gs[:,1], facecolor=(0.9,0.9,0.9))
+sphere_mars,=ax1.plot([],[],'k', linewidth=3)
+land_Mars=ax1.plot([-radius*width_ratio, radius*width_ratio], [-5,-5],'orangered', linewidth=38)
+plt.xlim(-radius*width_ratio, radius*width_ratio)
+plt.ylim(y_f, y_i+dy)
+plt.yticks(np.arange(y_f, y_i+2*dy, dy))
+plt.ylabel('altitude [m]')
+plt.title('Mars')
 
 
 # create position function
