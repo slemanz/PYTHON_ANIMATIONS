@@ -11,22 +11,23 @@ t = np.arange(t0, t_end+dt, dt)
 
 
 # gravitational accelerations
-g_earth = 9.8 # [m/s^2]
-
+g_earth = -9.8 # [m/s^2]
+g_mars = -3.71
 
 # position y arrays
 n = 2
 y_i = 100 # [m]
-y_earth = y_i - 0.5*g_earth*t**n
+y_earth = y_i + 0.5*g_earth*t**n
 
 
 
 # velocity y arrays
-y_earth_velocity= -1*n*0.5*g_earth*t**(n-1)
+y_earth_velocity= n*0.5*g_earth*t**(n-1)
 
 
 # acceleration y arrays
 y_earth_acceleration = (n-1)*g_earth*t**(n-2)
+
 
 
 # create circles
@@ -54,8 +55,9 @@ def update_plot(num):
         sphere_earth.set_data(sphere_x_earth, sphere_y_earth+y_earth[num])
         alt_E.set_data(t[0:num], y_earth[0:num])
         vel_E.set_data(t[0:num], y_earth_velocity[0:num])
+        acc_E.set_data(t[0:num], y_earth_acceleration[0:num])
 
-    return sphere_earth, alt_E, vel_E
+    return sphere_earth, alt_E, vel_E, acc_E
 
 
 # figure properties
@@ -89,6 +91,15 @@ vel_E,=ax4.plot([],[],'g', linewidth=3, label='Vel_Earth = '+str(g_earth)+'t [m/
 plt.xlim(0,t_end)
 plt.ylim(y_earth_velocity[-1], 0)
 plt.legend(loc='lower left', fontsize='x-small')
+
+# create acceleration function
+
+ax5=fig.add_subplot(gs[2,3], facecolor=(0.9,0.9,0.9))
+acc_E,=ax5.plot([],[],'g',linewidth=3,label='Acc_earth = '+str(g_earth)+'[(m/s)s = m/s^2]')
+plt.xlim(0,t_end)
+plt.ylim(g_earth-1,0)
+plt.legend(loc=(0.02,0.35), fontsize='x-small')
+
 
 free_fall=animation.FuncAnimation(fig, update_plot, frame_amount, interval=20, 
                                     repeat=True, blit=True)
