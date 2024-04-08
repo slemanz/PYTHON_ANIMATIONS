@@ -63,11 +63,11 @@ def update_plot(num):
 
     if(y_mars[num] >= radius):
         sphere_mars.set_data(sphere_x_mars, sphere_y_mars+y_mars[num])
-        #alt_E.set_data(t[0:num], y_earth[0:num])
-        #vel_E.set_data(t[0:num], y_earth_velocity[0:num])
-        #acc_E.set_data(t[0:num], y_earth_acceleration[0:num])
+        alt_M.set_data(t[0:num], y_mars[0:num])
+        vel_M.set_data(t[0:num], y_mars_velocity[0:num])
+        acc_M.set_data(t[0:num], y_mars_acceleration[0:num])
 
-    return sphere_earth, alt_E, vel_E, acc_E
+    return sphere_earth, alt_E, vel_E, acc_E, alt_M
 
 
 # figure properties
@@ -101,6 +101,7 @@ plt.title('Mars')
 # create position function
 ax3=fig.add_subplot(gs[0,3], facecolor=(0.9,0.9,0.9))
 alt_E,=ax3.plot([],[],'g', label='Alt_Earth = '+str(y_i)+'('+str(round(g_earth/2,1))+')t^'+str(n)+' [m]', linewidth=3)
+alt_M,=ax3.plot([],[],'orangered', label='Alt_Mars = '+str(y_i)+'('+str(round(g_mars/2,1))+')t^'+str(n)+' [m]', linewidth=3)
 plt.xlim(0, t_end)
 plt.ylim(0, y_i)
 plt.legend(loc=(0.6,0.7), fontsize='x-small')
@@ -109,6 +110,7 @@ plt.legend(loc=(0.6,0.7), fontsize='x-small')
 # Create velocity function
 ax4=fig.add_subplot(gs[1,3], facecolor=(0.9,0.9,0.9))
 vel_E,=ax4.plot([],[],'g', linewidth=3, label='Vel_Earth = '+str(g_earth)+'t [m/s]')
+vel_M,=ax4.plot([],[],'orangered', linewidth=3, label='Vel_Mars = '+str(g_mars)+'t [m/s]')
 plt.xlim(0,t_end)
 plt.ylim(y_earth_velocity[-1], 0)
 plt.legend(loc='lower left', fontsize='x-small')
@@ -116,7 +118,8 @@ plt.legend(loc='lower left', fontsize='x-small')
 # create acceleration function
 
 ax5=fig.add_subplot(gs[2,3], facecolor=(0.9,0.9,0.9))
-acc_E,=ax5.plot([],[],'g',linewidth=3,label='Acc_earth = '+str(g_earth)+'[(m/s)s = m/s^2]')
+acc_E,=ax5.plot([],[],'g',linewidth=3,label='Acc_Earth = '+str(g_earth)+'[(m/s)s = m/s^2]')
+acc_M,=ax5.plot([],[],'orangered',linewidth=3,label='Acc_Mars = '+str(g_mars)+'[(m/s)s = m/s^2]')
 plt.xlim(0,t_end)
 plt.ylim(g_earth-1,0)
 plt.legend(loc=(0.02,0.35), fontsize='x-small')
