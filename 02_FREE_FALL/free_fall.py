@@ -13,23 +13,27 @@ t = np.arange(t0, t_end+dt, dt)
 # gravitational accelerations
 g_earth = -9.8 # [m/s^2]
 g_mars = -3.71
+g_moon = -1.625
 
 # position y arrays
 n = 2
 y_i = 100 # [m]
 y_earth = y_i + 0.5*g_earth*t**n
 y_mars = y_i + 0.5*g_mars*t**n
+y_moon = y_i + 0.5*g_moon*t**n
 
 
 
 # velocity y arrays
 y_earth_velocity= n*0.5*g_earth*t**(n-1)
 y_mars_velocity= n*0.5*g_mars*t**(n-1)
+y_moon= n*0.5*g_moon*t**(n-1)
 
 
 # acceleration y arrays
 y_earth_acceleration = (n-1)*g_earth*t**(n-2)
 y_mars_acceleration = (n-1)*g_mars*t**(n-2)
+y_moon_acceleration = (n-1)*g_moon*t**(n-2)
 
 
 
@@ -44,6 +48,7 @@ def create_circle(r):
 radius = 5 # [meters]
 sphere_x_earth, sphere_y_earth = create_circle(radius)
 sphere_x_mars, sphere_y_mars = create_circle(radius)
+sphere_x_moon, sphere_y_moon = create_circle(radius)
 
 '''
         ANIMATION
@@ -97,6 +102,16 @@ plt.yticks(np.arange(y_f, y_i+2*dy, dy))
 plt.ylabel('altitude [m]')
 plt.title('Mars')
 
+
+# create obejct for moon
+ax2 = fig.add_subplot(gs[:,2], facecolor=(0.9,0.9,0.9))
+#sphere_mars,=ax2.plot([],[],'k', linewidth=3)
+land_Moon=ax2.plot([-radius*width_ratio, radius*width_ratio], [-5,-5],'gray', linewidth=38)
+plt.xlim(-radius*width_ratio, radius*width_ratio)
+plt.ylim(y_f, y_i+dy)
+plt.yticks(np.arange(y_f, y_i+2*dy, dy))
+plt.ylabel('altitude [m]')
+plt.title('Moon')
 
 # create position function
 ax3=fig.add_subplot(gs[0,3], facecolor=(0.9,0.9,0.9))
