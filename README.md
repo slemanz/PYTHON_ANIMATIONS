@@ -5,3 +5,5 @@
  ## Projects:
 
  [1. Airplane One Dimension](01_ONE_DIMENSION_AIRPLANE/README.md)
+
+ [2. Free Fall](02_FREE_FALL/README.md)
