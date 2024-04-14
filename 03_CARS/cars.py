@@ -47,7 +47,7 @@ gs=gridspec.GridSpec(2,2)
 # subplot 0
 ax0=fig.add_subplot(gs[0,0], facecolor=(0.9,0.9,0.9))
 x_blue,=ax0.plot([],[],'-b', linewidth=3, label='X_blue = '+str(A1)+'sin(2π*'+str(f1)+'*t)')
-x_red,=ax0.plot([],[],'-r', linewidth=3, label='X_red = '+str(A2)+'sin(2π*'+str(f2)+'*t)')
+x_red,=ax0.plot([],[],'-r', linewidth=3, label='X_red = '+str(A2)+'cos(2π*'+str(f2)+'*t)')
 
 plt.xlim(t0,t_end)
 plt.ylim(-8,8)
@@ -57,5 +57,23 @@ plt.ylabel('X [m]')
 ax0.spines['bottom'].set_position('center')
 ax0.xaxis.set_label_coords(0.5,0)
 plt.legend(bbox_to_anchor=(1, 1.2), fontsize='medium')
+
+
+# subplot 1
+ax1=fig.add_subplot(gs[1,0], facecolor=(0.9,0.9,0.9))
+Y_green,=ax1.plot([],[],'g',linewidth=3)
+Y_green2,=ax1.plot([],[],'g',linewidth=3)
+Y_purple,=ax1.plot([],[],'m',linewidth=3, alpha=0.3)
+Y_purple2,=ax1.plot([],[],'m',linewidth=3, alpha=0.3)
+
+plt.xlim(t0,t_end)
+plt.ylim(-2, y_i+1)
+plt.grid(True)
+plt.xlabel('time [s]')
+plt.ylabel('Y [m]')
+ax1.spines['bottom'].set_position(('data',0))
+#ax1.spines['left'].set_position(('data',0))
+ax1.xaxis.set_label_coords(0.5,0)
+
 
 plt.show()
