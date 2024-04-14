@@ -76,4 +76,22 @@ ax1.spines['bottom'].set_position(('data',0))
 ax1.xaxis.set_label_coords(0.5,0)
 
 
+# subplot 2
+ax2=fig.add_subplot(gs[:,1], facecolor=(0.9,0.9,0.9))
+block_blue,=ax2.plot([],[], '-b', linewidth=28)
+block_red,=ax2.plot([],[], '-r', linewidth=28)
+block_green,=ax2.plot([],[], '-g', linewidth=24)
+block_purple,=ax2.plot([],[], 'purple', linewidth=24)
+
+# create danger zone
+danger_zone1_1,=ax2.plot([3,4], [1,1], '-k', linewidth=3) 
+danger_zone1_2,=ax2.plot([3,4], [2,2], '-k', linewidth=3) 
+danger_zone1_3,=ax2.plot([3,3], [1,2], '-k', linewidth=3) 
+danger_zone1_4,=ax2.plot([4,4], [1,2], '-k', linewidth=3) 
+
+
+
+plt.xlim(-max(A1,A2)-1, max(A1,A2)+1)
+plt.ylim(-2, y_i+1)
+
 plt.show()
