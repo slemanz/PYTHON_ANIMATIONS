@@ -119,5 +119,10 @@ ax2.text(-7.8, y_i+1.5, 'car_purple='+str(int(y_i))+'-2(t-6)^2', size=10, color=
 
 plt.xlim(-max(A1,A2)-1, max(A1,A2)+1)
 plt.ylim(-2, y_i+1)
+plt.grid(True)
+ax2.spines['left'].set_position('center')
+ax2.spines['bottom'].set_position(('data',0))
+plt.xticks(np.concatenate([np.arange(-7-1,0,1), np.arange(1,7+2,1)]), size=10)
+plt.yticks(np.concatenate([np.arange(-2,0,1), np.arange(1,y_i+2,1)]), size=10)
 
 plt.show()
