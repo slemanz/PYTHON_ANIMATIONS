@@ -83,12 +83,38 @@ block_red,=ax2.plot([],[], '-r', linewidth=28)
 block_green,=ax2.plot([],[], '-g', linewidth=24)
 block_purple,=ax2.plot([],[], 'purple', linewidth=24)
 
-# create danger zone
-danger_zone1_1,=ax2.plot([3,4], [1,1], '-k', linewidth=3) 
+# create danger zone 1
+danger_zone1_1,=ax2.plot([3,4], [1,1], '-k', linewidth=3)
 danger_zone1_2,=ax2.plot([3,4], [2,2], '-k', linewidth=3) 
 danger_zone1_3,=ax2.plot([3,3], [1,2], '-k', linewidth=3) 
 danger_zone1_4,=ax2.plot([4,4], [1,2], '-k', linewidth=3) 
 
+
+# create danger zone 2
+danger_zone2_1,=ax2.plot([3,4], [3,3], '-k', linewidth=3)
+danger_zone2_2,=ax2.plot([3,4], [4,4], '-k', linewidth=3) 
+danger_zone2_3,=ax2.plot([3,3], [3,4], '-k', linewidth=3) 
+danger_zone2_4,=ax2.plot([4,4], [3,4], '-k', linewidth=3) 
+
+
+# create danger zone 3
+danger_zone3_1,=ax2.plot([-3,-4], [1,1], '-k', linewidth=3)
+danger_zone3_2,=ax2.plot([-3,-4], [2,2], '-k', linewidth=3) 
+danger_zone3_3,=ax2.plot([-3,-3], [1,2], '-k', linewidth=3) 
+danger_zone3_4,=ax2.plot([-4,-4], [1,2], '-k', linewidth=3) 
+
+
+# create danger zone 4
+danger_zone4_1,=ax2.plot([-3,-4], [3,3], '-k', linewidth=3)
+danger_zone4_2,=ax2.plot([-3,-4], [4,4], '-k', linewidth=3) 
+danger_zone4_3,=ax2.plot([-3,-3], [3,4], '-k', linewidth=3) 
+danger_zone4_4,=ax2.plot([-4,-4], [3,4], '-k', linewidth=3) 
+
+
+bbox_green=dict(boxstyle='square', fc=(0.9,0.9,0.9), ec='g', lw=1)
+bbox_purple=dict(boxstyle='square', fc=(0.9,0.9,0.9), ec='purple', lw=1)
+ax2.text(0.3, y_i+1.5, 'car_green='+str(int(y_i))+'-2(t-2)^2', size=10, color='g', bbox=bbox_green)
+ax2.text(-7.8, y_i+1.5, 'car_purple='+str(int(y_i))+'-2(t-6)^2', size=10, color='purple', bbox=bbox_purple)
 
 
 plt.xlim(-max(A1,A2)-1, max(A1,A2)+1)
