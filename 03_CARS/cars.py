@@ -35,8 +35,14 @@ car_purple=y_i-2*(t-6)
 frame_amount=len(t)
 
 def update_plot(num):
+    # subplot 0
+    x_blue.set_data(t[0:num], train_blue[0:num])
+    x_red.set_data(t[0:num], train_red[0:num])
 
-    return
+    # subplot 1 & 2
+    
+
+    return x_blue, x_red
 
 
 
@@ -124,5 +130,8 @@ ax2.spines['left'].set_position('center')
 ax2.spines['bottom'].set_position(('data',0))
 plt.xticks(np.concatenate([np.arange(-7-1,0,1), np.arange(1,7+2,1)]), size=10)
 plt.yticks(np.concatenate([np.arange(-2,0,1), np.arange(1,y_i+2,1)]), size=10)
+
+cars=animation.FuncAnimation(fig, update_plot, frame_amount, interval=10, 
+                                    repeat=True, blit=True)
 
 plt.show()
