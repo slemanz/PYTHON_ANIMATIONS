@@ -20,7 +20,7 @@ train_blue = A1*np.sin(2*np.pi*f1*t)
 
 # red train
 f2 = 0.125  # [hz]
-A2 = 7 # [m]
+A2 = -7 # [m]
 train_red=A2*np.cos(2*np.pi*f2*t)
 
 # Cars
@@ -40,9 +40,17 @@ def update_plot(num):
     x_red.set_data(t[0:num], train_red[0:num])
 
     # subplot 1 & 2
+    block_blue.set_data([train_blue[num]-0.45, train_blue[num]+0.45], [3.5,3.5])
+    block_red.set_data([train_red[num]-0.45, train_red[num]+0.45], [1.5,1.5])
     
+    if t[num] >= 2:
+        block_green.set_data([3.5,3.5], [car_green[num]-0.5, car_green[num]+0.5])
+        Y_green.set_data(t[int(2/dt):num], car_green[int(2/dt):num])
+    else:
+        block_green.set_data([3.5,3.5], [y_i-0.5, y_i+0.5])
+        Y_green2.set_data(t[0:num], y_i)
 
-    return x_blue, x_red
+    return x_blue, x_red, block_blue, block_red, block_green, Y_green, Y_green2
 
 
 
