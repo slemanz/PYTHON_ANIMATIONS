@@ -13,14 +13,14 @@ t=np.arange(t0,t_end+dt,dt)
     Create arrays for motion
 '''
 # blue train
-f1=0.125 # [hz]
-A1 = 7   # [m]
+f1=(1/3) # [hz]
+A1 = 20   # [m]
 train_blue = A1*np.sin(2*np.pi*f1*t)
 
 
 # red train
-f2 = 0.125  # [hz]
-A2 = -7 # [m]
+f2 = (1/12)  # [hz]
+A2 = 5 # [m]
 train_red=A2*np.cos(2*np.pi*f2*t)
 
 # Cars
@@ -41,8 +41,8 @@ def update_plot(num):
     x_red.set_data(t[0:num], train_red[0:num])
 
     # subplot 1 & 2
-    block_blue.set_data([train_blue[num]-0.45, train_blue[num]+0.45], [3.5,3.5])
-    block_red.set_data([train_red[num]-0.45, train_red[num]+0.45], [1.5,1.5])
+    block_blue.set_data([train_blue[num]-0.25, train_blue[num]+0.25], [3.5,3.5])
+    block_red.set_data([train_red[num]-0.25, train_red[num]+0.25], [1.5,1.5])
     
     if t[num] >= 2:
         block_green.set_data([3.5,3.5], [car_green[num]-0.5, car_green[num]+0.5])
@@ -72,7 +72,7 @@ x_blue,=ax0.plot([],[],'-b', linewidth=3, label='X_blue = '+str(A1)+'sin(2π*'+s
 x_red,=ax0.plot([],[],'-r', linewidth=3, label='X_red = '+str(A2)+'cos(2π*'+str(f2)+'*t)')
 
 plt.xlim(t0,t_end)
-plt.ylim(-8,8)
+plt.ylim(-21,21)
 plt.grid(True)
 plt.xlabel('time [s]')
 plt.ylabel('X [m]')
@@ -102,8 +102,8 @@ ax1.xaxis.set_label_coords(0.5,0)
 ax2=fig.add_subplot(gs[:,1], facecolor=(0.9,0.9,0.9))
 block_blue,=ax2.plot([],[], '-b', linewidth=28)
 block_red,=ax2.plot([],[], '-r', linewidth=28)
-block_green,=ax2.plot([],[], '-g', linewidth=24)
-block_purple,=ax2.plot([],[], 'purple', linewidth=24)
+block_green,=ax2.plot([],[], '-g', linewidth=18)
+block_purple,=ax2.plot([],[], 'purple', linewidth=18)
 
 # create danger zone 1
 danger_zone1_1,=ax2.plot([3,4], [1,1], '-k', linewidth=3)
@@ -144,7 +144,7 @@ plt.ylim(-2, y_i+1)
 plt.grid(True)
 ax2.spines['left'].set_position('center')
 ax2.spines['bottom'].set_position(('data',0))
-plt.xticks(np.concatenate([np.arange(-7-1,0,1), np.arange(1,7+2,1)]), size=10)
+plt.xticks(np.concatenate([np.arange(-21,0,2), np.arange(1,20+2,2)]), size=10)
 plt.yticks(np.concatenate([np.arange(-2,0,1), np.arange(1,y_i+2,1)]), size=10)
 
 cars=animation.FuncAnimation(fig, update_plot, frame_amount, interval=10, 
