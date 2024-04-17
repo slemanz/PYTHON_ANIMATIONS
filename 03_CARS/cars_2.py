@@ -48,6 +48,7 @@ def update_plot(num):
         block_green.set_data([3.5,3.5], [car_green[num]-0.5, car_green[num]+0.5])
         Y_green.set_data(t[int(2/dt):num], car_green[int(2/dt):num])
     else:
+        Y_green.set_data([],[])
         block_green.set_data([3.5,3.5], [y_i-0.5, y_i+0.5])
         Y_green2.set_data(t[0:num], y_ia[0:num])
 
