@@ -56,6 +56,7 @@ def update_plot(num):
         Y_purple.set_data(t[int(6/dt):num], car_purple[int(6/dt):num])
     else:
         block_purple.set_data([-3.5,-3.5], [y_i-0.5, y_i+0.5])
+        Y_purple.set_data([], [])
         Y_purple2.set_data(t[0:num], y_ia[0:num])
 
     return x_blue, x_red, block_blue, block_red, block_green, Y_green, block_purple, Y_purple, Y_purple2, Y_green2
