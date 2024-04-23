@@ -92,6 +92,25 @@ plt.yticks(np.arange(volume_i,volume_f+dVol, dVol))
 plt.ylabel('tank volume [m^3]')
 plt.title('Tank 1')
 
+# tank 2
+ax0=fig.add_subplot(gs[0,1], facecolor=(0.9,0.9,0.9))
+tank_2=ax0.plot([],[],'r',linewidth=4)
+tank_22=ax0.plot([],[],'royalblue',linewidth=260)
+plt.xlim(-radius,radius)
+plt.ylim(volume_i, volume_f)
+plt.xticks(np.arange(-radius,radius+1, radius))
+plt.yticks(np.arange(volume_i,volume_f+dVol, dVol))
+plt.title('Tank 2')
+
+# tank 3
+ax0=fig.add_subplot(gs[0,2], facecolor=(0.9,0.9,0.9))
+tank_3=ax0.plot([],[],'r',linewidth=4)
+tank_32=ax0.plot([],[],'royalblue',linewidth=260)
+plt.xlim(-radius,radius)
+plt.ylim(volume_i, volume_f)
+plt.xticks(np.arange(-radius,radius+1, radius))
+plt.yticks(np.arange(volume_i,volume_f+dVol, dVol))
+plt.title('Tank 3')
 
 
 
