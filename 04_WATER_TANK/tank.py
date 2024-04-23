@@ -46,4 +46,17 @@ for i in range(0, len(t)):
         volume_Tank2[i] = 50+np.sin(2*np.pi*2(t[i]-t[temp23]))
     else:
         volume_Tank2[i] = 50
+
+    # tank 3
+    if t[i] <= 32.5:
+        volume_Tank3[i] = 30+2*t[i]
+        temp31 = i
+    elif t[i] <= 32.5 +45**0.5:
+        volume_Tank3[i] = 95 - (t[i] - t[temp31])**2
+        temp32 = i
+    elif t[i] <= 42.5+45**0.5:
+        volume_Tank3[i] = 50-np.sin(2*np.pi*1*(t[i] - t[temp32]))
+    else:
+        volume_Tank3[i] = 50
+
     
