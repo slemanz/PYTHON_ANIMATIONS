@@ -31,19 +31,19 @@ for i in range(0, len(t)):
         volume_Tank1[i] = 50
 
     # tank 2
-    if t[i] >= 27.5:
+    if t[i] <= 27.5:
         volume_Tank2[i] = 40+2*t[i]
     elif t[i] <= 32.5:
-        volume_Tank2 = 95
+        volume_Tank2[i] = 95
         temp21 = i
-    elif t[i] <= 32.5 + 45**0.5:
-        volume_Tank2[i] = 95 - (t[i] t[temp21])**2
+    elif t[i] <= 32.5+45**0.5:
+        volume_Tank2[i] = 95-(t[i]-t[temp21])**2
         temp22 = i
     elif t[i] <= 37.5 +45**0.5:
-        volume_Tank2[i] = 50 + 3*np.sin(2*np.pi*1*(t[i] - t[temp22]))
+        volume_Tank2[i] = 50+3*np.sin(2*np.pi*1*(t[i] - t[temp22]))
         temp23 = i
-    elif t[i] <= 42.5+45**0.5
-        volume_Tank2[i] = 50+np.sin(2*np.pi*2(t[i]-t[temp23]))
+    elif t[i] <= 42.5+45**0.5:
+        volume_Tank2[i] = 50+np.sin(2*np.pi*2*(t[i]-t[temp23]))
     else:
         volume_Tank2[i] = 50
 
@@ -60,3 +60,29 @@ for i in range(0, len(t)):
         volume_Tank3[i] = 50
 
     
+'''
+        ANIMATION
+'''
+
+frame_amount=len(t)
+
+# create the watertanks
+radius = 5  # m
+volume_i = 0 # m^3
+volume_f = 100 # m^3
+dVol = 10
+
+#def update_plot(num):
+#
+#    return
+
+
+# set up your figure properties
+fig=plt.figure(figsize=(16,9), dpi=120, facecolor=(0.8,0.8,0.8))
+gs=gridspec.GridSpec(2,3)
+
+
+
+
+
+plt.show()
