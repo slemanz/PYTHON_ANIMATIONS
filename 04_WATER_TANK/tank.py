@@ -81,6 +81,17 @@ dVol = 10
 fig=plt.figure(figsize=(16,9), dpi=120, facecolor=(0.8,0.8,0.8))
 gs=gridspec.GridSpec(2,3)
 
+# tank 1
+ax0=fig.add_subplot(gs[0,0], facecolor=(0.9,0.9,0.9))
+tank_1=ax0.plot([],[],'r',linewidth=4)
+tank_12=ax0.plot([],[],'royalblue',linewidth=260)
+plt.xlim(-radius,radius)
+plt.ylim(volume_i, volume_f)
+plt.xticks(np.arange(-radius,radius+1, radius))
+plt.yticks(np.arange(volume_i,volume_f+dVol, dVol))
+plt.ylabel('tank volume [m^3]')
+plt.title('Tank 1')
+
 
 
 
