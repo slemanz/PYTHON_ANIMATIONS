@@ -112,7 +112,18 @@ plt.xticks(np.arange(-radius,radius+1, radius))
 plt.yticks(np.arange(volume_i,volume_f+dVol, dVol))
 plt.title('Tank 3')
 
-
-
+# Create volume function
+ax3=fig.add_subplot(gs[1,0:2], facecolor=(0.9,0.9,0.9))
+tnk_1,=ax3.plot([],[],'blue', linewidth=3, label='Tank 1')
+tnk_2,=ax3.plot([],[],'green', linewidth=3, label='Tank 2')
+tnk_3,=ax3.plot([],[],'red', linewidth=3, label='Tank 3')
+plt.xlim(t0,t_end)
+plt.ylim(volume_i,volume_f)
+plt.xticks([0,22.5,27.5,32.5,32.5+45**0.5,37.5+45**0.5, 42.5+45**0.5,60])
+plt.yticks(np.arange(volume_i, volume_f+1, dVol))
+plt.xlabel('time [s]')
+plt.ylabel('tank volume [m^3]')
+plt.grid(True)
+plt.legend(loc='upper right', fontsize='small')
 
 plt.show()
