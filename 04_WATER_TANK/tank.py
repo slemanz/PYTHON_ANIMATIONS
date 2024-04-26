@@ -75,8 +75,10 @@ dVol = 10
 def update_plot(num):
     # Tank 1
     tank_1.set_data([-radius,radius], [volume_Tank1[num], volume_Tank1[num]])
+    tank_12.set_data([0,0], [-64, volume_Tank1[num]-64])
+    tnk_1.set_data(t[0:num], volume_Tank1[0:num])
 
-    return tank_1, 
+    return tank_1, tank_12, tnk_1
 
 
 # set up your figure properties
@@ -85,8 +87,8 @@ gs=gridspec.GridSpec(2,3)
 
 # tank 1
 ax0=fig.add_subplot(gs[0,0], facecolor=(0.9,0.9,0.9))
+tank_12,=ax0.plot([],[],'royalblue',linewidth=264)
 tank_1,=ax0.plot([],[],'r',linewidth=4)
-tank_12,=ax0.plot([],[],'royalblue',linewidth=260)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
@@ -131,7 +133,7 @@ plt.legend(loc='upper right', fontsize='small')
 
 
 
-cars=animation.FuncAnimation(fig, update_plot, frame_amount, interval=10, 
+cars=animation.FuncAnimation(fig, update_plot, frame_amount, interval=5, 
                                     repeat=True, blit=True)
 
 plt.show()
