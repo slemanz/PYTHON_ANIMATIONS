@@ -72,9 +72,11 @@ volume_i = 0 # m^3
 volume_f = 100 # m^3
 dVol = 10
 
-#def update_plot(num):
-#
-#    return
+def update_plot(num):
+    # Tank 1
+    tank_1.set_data([-radius,radius], [volume_Tank1[num], volume_Tank1[num]])
+
+    return tank_1, 
 
 
 # set up your figure properties
@@ -83,8 +85,8 @@ gs=gridspec.GridSpec(2,3)
 
 # tank 1
 ax0=fig.add_subplot(gs[0,0], facecolor=(0.9,0.9,0.9))
-tank_1=ax0.plot([],[],'r',linewidth=4)
-tank_12=ax0.plot([],[],'royalblue',linewidth=260)
+tank_1,=ax0.plot([],[],'r',linewidth=4)
+tank_12,=ax0.plot([],[],'royalblue',linewidth=260)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
@@ -94,8 +96,8 @@ plt.title('Tank 1')
 
 # tank 2
 ax0=fig.add_subplot(gs[0,1], facecolor=(0.9,0.9,0.9))
-tank_2=ax0.plot([],[],'r',linewidth=4)
-tank_22=ax0.plot([],[],'royalblue',linewidth=260)
+tank_2,=ax0.plot([],[],'r',linewidth=4)
+tank_22,=ax0.plot([],[],'royalblue',linewidth=260)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
@@ -104,8 +106,8 @@ plt.title('Tank 2')
 
 # tank 3
 ax0=fig.add_subplot(gs[0,2], facecolor=(0.9,0.9,0.9))
-tank_3=ax0.plot([],[],'r',linewidth=4)
-tank_32=ax0.plot([],[],'royalblue',linewidth=260)
+tank_3,=ax0.plot([],[],'r',linewidth=4)
+tank_32,=ax0.plot([],[],'royalblue',linewidth=260)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
@@ -125,5 +127,11 @@ plt.xlabel('time [s]')
 plt.ylabel('tank volume [m^3]')
 plt.grid(True)
 plt.legend(loc='upper right', fontsize='small')
+
+
+
+
+cars=animation.FuncAnimation(fig, update_plot, frame_amount, interval=10, 
+                                    repeat=True, blit=True)
 
 plt.show()
