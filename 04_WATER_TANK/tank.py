@@ -77,8 +77,13 @@ def update_plot(num):
     tank_1.set_data([-radius,radius], [volume_Tank1[num], volume_Tank1[num]])
     tank_12.set_data([0,0], [-64, volume_Tank1[num]-64])
     tnk_1.set_data(t[0:num], volume_Tank1[0:num])
+    
+    # Tank 2
+    tank_2.set_data([-radius,radius], [volume_Tank2[num], volume_Tank2[num]])
+    tank_22.set_data([0,0], [-64, volume_Tank2[num]-64])
+    tnk_2.set_data(t[0:num], volume_Tank2[0:num])
 
-    return tank_1, tank_12, tnk_1
+    return tank_1, tank_12, tnk_1, tank_2, tank_22, tnk_2
 
 
 # set up your figure properties
@@ -99,7 +104,7 @@ plt.title('Tank 1')
 # tank 2
 ax0=fig.add_subplot(gs[0,1], facecolor=(0.9,0.9,0.9))
 tank_2,=ax0.plot([],[],'r',linewidth=4)
-tank_22,=ax0.plot([],[],'royalblue',linewidth=260)
+tank_22,=ax0.plot([],[],'royalblue',linewidth=264)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
