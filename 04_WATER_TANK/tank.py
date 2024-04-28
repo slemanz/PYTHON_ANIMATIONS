@@ -75,24 +75,29 @@ dVol = 10
 def update_plot(num):
     # Tank 1
     tank_1.set_data([-radius,radius], [volume_Tank1[num], volume_Tank1[num]])
-    tank_12.set_data([0,0], [-64, volume_Tank1[num]-64])
+
+    #tank_12.set_data([0,0], [-64, volume_Tank1[num]-64])
+    tank_12.set_height(volume_Tank1[num])
+    #tank_12.set_width(10-num/100)
+
+
     tnk_1.set_data(t[0:num], volume_Tank1[0:num])
     tnk_1Z.set_data(t[0:num], volume_Tank1[0:num])
     
     # Tank 2
     tank_2.set_data([-radius,radius], [volume_Tank2[num], volume_Tank2[num]])
-    tank_22.set_data([0,0], [-64, volume_Tank2[num]-64])
+    tank_22.set_height(volume_Tank2[num])
     tnk_2.set_data(t[0:num], volume_Tank2[0:num])
     tnk_2Z.set_data(t[0:num], volume_Tank2[0:num])
 
     # Tank 2
     tank_3.set_data([-radius,radius], [volume_Tank3[num], volume_Tank3[num]])
-    tank_32.set_data([0,0], [-64, volume_Tank3[num]-64])
+    tank_32.set_height(volume_Tank3[num])
     tnk_3.set_data(t[0:num], volume_Tank3[0:num])
     tnk_3Z.set_data(t[0:num], volume_Tank3[0:num])
 
 
-    return tank_1, tank_12, tnk_1, tank_2, tank_22, tnk_2, tank_3, tank_32, tnk_3, tnk_1Z, tnk_2Z, tnk_3Z
+    return tank_1, tnk_1, tank_12, tank_2, tank_22, tnk_2, tank_3, tank_32, tnk_3, tnk_1Z, tnk_2Z, tnk_3Z
 
 
 # set up your figure properties
@@ -101,7 +106,11 @@ gs=gridspec.GridSpec(2,3)
 
 # tank 1
 ax0=fig.add_subplot(gs[0,0], facecolor=(0.9,0.9,0.9))
-tank_12,=ax0.plot([],[],'royalblue',linewidth=264)
+#tank_12,=ax0.plot([],[],'royalblue',linewidth=264)
+
+tank_12 = plt.Rectangle([-5,0], 10, 0, facecolor='royalblue')
+ax0.add_patch(tank_12)
+
 tank_1,=ax0.plot([],[],'r',linewidth=4)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
@@ -111,9 +120,10 @@ plt.ylabel('tank volume [m^3]')
 plt.title('Tank 1')
 
 # tank 2
-ax0=fig.add_subplot(gs[0,1], facecolor=(0.9,0.9,0.9))
-tank_2,=ax0.plot([],[],'r',linewidth=4)
-tank_22,=ax0.plot([],[],'royalblue',linewidth=264)
+ax1=fig.add_subplot(gs[0,1], facecolor=(0.9,0.9,0.9))
+tank_2,=ax1.plot([],[],'r',linewidth=4)
+tank_22 = plt.Rectangle([-5,0], 10, 0, facecolor='royalblue')
+ax1.add_patch(tank_22)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
@@ -121,9 +131,10 @@ plt.yticks(np.arange(volume_i,volume_f+dVol, dVol))
 plt.title('Tank 2')
 
 # tank 3
-ax0=fig.add_subplot(gs[0,2], facecolor=(0.9,0.9,0.9))
-tank_3,=ax0.plot([],[],'r',linewidth=4)
-tank_32,=ax0.plot([],[],'royalblue',linewidth=264)
+ax2=fig.add_subplot(gs[0,2], facecolor=(0.9,0.9,0.9))
+tank_3,=ax2.plot([],[],'r',linewidth=4)
+tank_32 = plt.Rectangle([-5,0], 10, 0, facecolor='royalblue')
+ax2.add_patch(tank_32)
 plt.xlim(-radius,radius)
 plt.ylim(volume_i, volume_f)
 plt.xticks(np.arange(-radius,radius+1, radius))
