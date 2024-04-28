@@ -77,18 +77,22 @@ def update_plot(num):
     tank_1.set_data([-radius,radius], [volume_Tank1[num], volume_Tank1[num]])
     tank_12.set_data([0,0], [-64, volume_Tank1[num]-64])
     tnk_1.set_data(t[0:num], volume_Tank1[0:num])
+    tnk_1Z.set_data(t[0:num], volume_Tank1[0:num])
     
     # Tank 2
     tank_2.set_data([-radius,radius], [volume_Tank2[num], volume_Tank2[num]])
     tank_22.set_data([0,0], [-64, volume_Tank2[num]-64])
     tnk_2.set_data(t[0:num], volume_Tank2[0:num])
+    tnk_2Z.set_data(t[0:num], volume_Tank2[0:num])
 
     # Tank 2
     tank_3.set_data([-radius,radius], [volume_Tank3[num], volume_Tank3[num]])
     tank_32.set_data([0,0], [-64, volume_Tank3[num]-64])
     tnk_3.set_data(t[0:num], volume_Tank3[0:num])
+    tnk_3Z.set_data(t[0:num], volume_Tank3[0:num])
 
-    return tank_1, tank_12, tnk_1, tank_2, tank_22, tnk_2, tank_3, tank_32, tnk_3
+
+    return tank_1, tank_12, tnk_1, tank_2, tank_22, tnk_2, tank_3, tank_32, tnk_3, tnk_1Z, tnk_2Z, tnk_3Z
 
 
 # set up your figure properties
@@ -139,6 +143,16 @@ plt.xlabel('time [s]')
 plt.ylabel('tank volume [m^3]')
 plt.grid(True)
 plt.legend(loc='upper right', fontsize='small')
+
+# Create volume function zoomed
+ax4=fig.add_subplot(gs[1,2], facecolor=(0.9,0.9,0.9))
+tnk_1Z,=ax4.plot([],[], 'blue', linewidth=3)
+tnk_2Z,=ax4.plot([],[], 'green', linewidth=3)
+tnk_3Z,=ax4.plot([],[], 'red', linewidth=3)
+plt.xticks([0,22.5,27.5,32.5,32.5+45**0.5,37.5+45**0.5, 42.5+45**0.5,60])
+plt.yticks(np.arange(volume_i, volume_f+1, dVol))
+plt.axis([38,50, 47, 53])
+plt.grid(True)
 
 
 
